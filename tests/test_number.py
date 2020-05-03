@@ -10,7 +10,7 @@ class TestNumbers:
         output = int(result.output)
 
         assert result.exit_code == 0
-        assert output >= 0 and output <= 1000
+        assert 0 <= output <= 1000
 
     def test_iterator(self):
         runner = CliRunner()
@@ -47,7 +47,7 @@ class TestNumbers:
         assert result.exit_code == 0
         assert output == test
 
-    def test_uniq(self):
+    def test_unique(self):
         runner = CliRunner()
         result = runner.invoke(cli, ['number', '-i 10', '-d ,', '-u'])
         output = list(map(int, result.output.split(',')))
