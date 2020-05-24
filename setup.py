@@ -22,7 +22,7 @@ setup(
             'rn = rn.main:cli'
         ]
     },
-    python_requires='>=3.7',
+    python_requires='>=3.5',
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3 :: Only',
