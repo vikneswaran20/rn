@@ -9,7 +9,7 @@ def validate_range(ctx, param, value):
 
 
 def validate_precision(ctx, param, value):
-    if value > 10:
+    if value is not None and value > 10:
         raise click.BadParameter('The precision should be less than 10')
     else:
         return value
