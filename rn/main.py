@@ -21,7 +21,7 @@ def cli():
     '-r',
     default=(1, 1000),
     nargs=2,
-    type=int,
+    type=float,
     callback=validation.validate_range,
     help='output range',
     show_default=True
@@ -42,10 +42,10 @@ def cli():
     help='delimiter for generated numbers'
 )
 @click.option(
-    '--uniq',
+    '--unique',
     '-u',
     is_flag=True,
-    help='generate uniq numbers'
+    help='generate unique numbers'
 )
 @click.option(
     '--sort',
@@ -54,9 +54,17 @@ def cli():
     type=click.Choice(['asc', 'desc'], case_sensitive=False),
     help='sort the values'
 )
-def random_number(iteration, range, delimiter, uniq, sort):
-    numbers = Numbers(range, iteration, delimiter, uniq, sort)
-    click.echo(numbers.genrate_random())
+@click.option(
+    '--precision',
+    '-p',
+    default=None,
+    type=int,
+    callback=validation.validate_precision,
+    help='number of decimal places'
+)
+def random_number(iteration, range, delimiter, unique, sort, precision):
+    numbers = Numbers(range, iteration, delimiter, unique, sort, precision)
+    click.echo(numbers.generate_random())
 
 
 @cli.command('uuid', help='generate random uuid')

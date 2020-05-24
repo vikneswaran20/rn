@@ -1,3 +1,5 @@
+import decimal
+
 from click.testing import CliRunner
 from rn.main import cli
 
@@ -54,3 +56,11 @@ class TestNumbers:
 
         assert result.exit_code == 0
         assert len(set(output)) == len(output)
+
+    def test_decimals(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ['number', '-p 3'])
+        output = abs(decimal.Decimal(result.output).as_tuple().exponent)
+
+        assert result.exit_code == 0
+        assert output == 3
